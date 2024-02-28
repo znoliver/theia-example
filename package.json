@@ -1,0 +1,26 @@
+{
+  "private": true,
+  "engines": {
+    "yarn": ">=1.7.0 <2",
+    "node": ">=16"
+  },
+  "scripts": {
+    "clean": "lerna run clean && rimraf node_modules",
+    "build:dev": "yarn build:extensions && yarn build:applications:dev",
+    "build": "yarn build:extensions && yarn build:applications",
+    "build:applications": "lerna run --scope=\"browser-app\" build:prod --concurrency 1",
+    "build:applications:dev": "lerna run --scope=\"browser-app\" build --concurrency 1",
+    "build:extensions": "lerna run --scope=\"hello-world-ext\" build",
+    "serve": "yarn browser start",
+    "watch": "lerna run --parallel watch",
+    "browser": "yarn --cwd browser-app"
+  },
+  "devDependencies": {
+    "lerna": "2.4.0",
+    "rimraf": "^2.7.1"
+  },
+  "workspaces": [
+    "extensions/*",
+    "browser-app"
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "private": true,
+  "name": "browser-app",
+  "version": "0.0.0",
+  "dependencies": {
+    "@theia/core": "latest",
+    "@theia/editor": "latest",
+    "@theia/filesystem": "latest",
+    "@theia/markers": "latest",
+    "@theia/messages": "latest",
+    "@theia/monaco": "latest",
+    "@theia/navigator": "latest",
+    "@theia/preferences": "latest",
+    "@theia/process": "latest",
+    "@theia/terminal": "latest",
+    "@theia/workspace": "latest",
+    "hello-world-ext": "0.0.0"
+  },
+  "devDependencies": {
+    "@theia/cli": "latest"
+  },
+  "scripts": {
+    "clean": "theia clean && rimraf node_modules",
+    "build": "yarn -s rebuild && theia build --mode development",
+    "build:prod": "yarn -s rebuild && theia build",
+    "rebuild": "theia rebuild:browser",
+    "start": "theia start",
+    "watch:build": "theia build --watch --mode development",
+    "watch": "concurrently --kill-others -n tsc,build -c red,yellow \"tsc -b -w --preserveWatchOutput\" \"yarn -s watch:build\"",
+    "start:watch": "concurrently --kill-others -n tsc,bundle,run -c red,yellow,green \"tsc -b -w --preserveWatchOutput\" \"theia build --watch --mode development\" \"yarn -s start\""
+  },
+  "theia": {
+    "target": "browser"
+  }
+}
