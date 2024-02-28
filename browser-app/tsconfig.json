@@ -1,0 +1,11 @@
+{
+  "include": [],
+  "compilerOptions": {
+    "composite": true
+  },
+  "references": [
+    {
+      "path": "../extensions/hello-world-ext"
+    }
+  ]
+}
